@@ -1,5 +1,3 @@
-import { bigShoe2 } from "../assets/images"
-
 const ShoeCard = ({imgURL, changeBigShoeImage, bigShoeImage}) => {
     const handleClick = ()=> {
         if(bigShoeImage !== imgURL.bigShoe){
