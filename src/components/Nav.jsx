@@ -1,5 +1,6 @@
 import {hamburger} from '../assets/icons'
 import {headerLogo} from '../assets/images'
+import {navLinks} from '../constants/index'
 
 const Nav = () => {
   return (
@@ -14,8 +15,25 @@ const Nav = () => {
                 />
             </a>
             <ul className='flex flex-1 justify-center items-center gap-16 max-lg:hidden'>
-                <li>toto</li>
+                {navLinks.map((link)=> (
+                    <li key={link.label}>
+                        <a 
+                            href={link.href}
+                            className='font-montserrat leading-normal text-lg text-slate-gray'
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
             </ul>
+            <div className='hidden max-lg:block'>
+                <img 
+                    src={hamburger}
+                    alt='toggle'
+                    width={25}
+                    height={25}
+                />
+            </div>
         </nav>
       </header>
   )
