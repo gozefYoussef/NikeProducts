@@ -1,8 +1,13 @@
+import { useState } from 'react'
 import {hamburger} from '../assets/icons'
 import {headerLogo} from '../assets/images'
 import {navLinks} from '../constants/index'
 
 const Nav = () => {
+    const [toggle,setToggle] = useState(false);
+    const handleChange = () => {
+        setToggle(prevState => !prevState)
+    }
   return (
       <header className="padding-x py-8 absolute z-10 w-full">
         <nav className='flex justify-between items-center max-container'>
@@ -26,13 +31,30 @@ const Nav = () => {
                     </li>
                 ))}
             </ul>
-            <div className='hidden max-lg:block'>
-                <img 
+            <div className='hidden max-lg:block relative'>
+                {!toggle && <img 
                     src={hamburger}
                     alt='toggle'
                     width={25}
                     height={25}
+                    onClick={handleChange}
                 />
+                }
+                {toggle && 
+                <ul className='block top-0 right-0 absolute'>
+                {navLinks.map((link)=> (
+                    <li key={link.label}>
+                        <a 
+                            href={link.href}
+                            className='font-montserrat leading-normal text-lg text-slate-gray'
+                            onClick={()=>handleChange()}
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+            }
             </div>
         </nav>
       </header>
